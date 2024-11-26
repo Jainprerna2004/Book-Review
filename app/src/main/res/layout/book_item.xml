@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white"
+    android:elevation="2dp"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BooksMain">
+
+    <!-- Book Cover Image -->
+    <ImageView
+        android:id="@+id/bookCover"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/one" />
+
+    <!-- Book Details Container -->
+    <LinearLayout
+        android:id="@+id/bookDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bookCover"
+        android:layout_marginEnd="48dp"
+        android:layout_toEndOf="@+id/bookCover"
+        android:orientation="vertical">
+
+        <!-- Book Title -->
+        <TextView
+            android:id="@+id/bookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Women in the Window"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Book Author -->
+        <TextView
+            android:id="@+id/bookAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="A. J. Finn"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Book Year and Platform -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <!-- Year -->
+            <TextView
+                android:id="@+id/bookYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="#AF52DE"
+                android:padding="4dp"
+                android:text="2018"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <!-- Platform -->
+            <TextView
+                android:id="@+id/bookPlatform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FE9502"
+                android:padding="4dp"
+                android:text="Apple Books"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Delete Icon (Initially Hidden) -->
+    <ImageView
+        android:id="@+id/deleteImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/ic_menu_delete"
+        android:visibility="gone"
+        android:contentDescription="Delete Book" />
+</RelativeLayout>
