@@ -29,7 +29,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     private List<Book> booksListFull;
     private Context context;
     private SQLiteDatabase database;
-    boolean showDeleteIcon; // To control whether the delete icon should be visible
+    boolean showDeleteIcon;
 
     public BooksAdapter(Context context, List<Book> booksList, boolean showDeleteIcon) {
         this.context = context;
@@ -58,7 +58,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         holder.bookPlatform.setText(book.getPlatform());
         holder.bookCover.setImageResource(book.getCoverResourceId());
 
-        // Open DetailsActivity when book is clicked
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailsActivity.class);
             intent.putExtra("BOOK_TITLE", book.getTitle());
@@ -69,15 +68,13 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             context.startActivity(intent);
         });
 
-        // Handle delete icon visibility
-        holder.deleteImageView.setVisibility(View.GONE); // Initially hide delete icon
+        holder.deleteImageView.setVisibility(View.GONE);
         if (showDeleteIcon) {
             holder.deleteImageView.setVisibility(View.VISIBLE);
         } else {
             holder.deleteImageView.setVisibility(View.GONE);
         }
 
-        // OnClick for the delete icon
         holder.deleteImageView.setOnClickListener(v -> removeBook(position));
     }
 
@@ -86,16 +83,13 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         return booksList.size();
     }
 
-    // Method to remove a book from the list and database
     public void removeBook(int position) {
         Book book = booksList.get(position);
 
-        // Remove from the database
-        String whereClause = "title = ?";  // You may want to use an ID to delete more precisely
+        String whereClause = "title = ?";
         String[] whereArgs = {book.getTitle()};
-        database.delete("reading_list", whereClause, whereArgs);  // Adjust table name as needed
+        database.delete("reading_list", whereClause, whereArgs);
 
-        // Remove from the list and notify adapter
         booksList.remove(position);
         notifyItemRemoved(position);
     }
